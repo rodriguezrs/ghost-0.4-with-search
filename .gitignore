@@ -1,0 +1,37 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+*.bak
+
+#Git junk files from merges
+*.orig
+
+#IDE support files
+/eclipse
+/.idea
+/*.iml
+/*.iws
+/*.ipr
+/.settings/org.eclipse.jdt.core.prefs
+
+# default HSQL database files for production mode
+/prodDb.*
+
+# general HSQL database files
+*Db.properties
+*Db.script
+
+# logs
+/stacktrace.log
+/test/reports
+/logs
+*.log
+
+# themes folder
+/content/themes
+
+#node_modules
+/node_modules/*.*
+
+#nbproject
+/nbproject/*.*

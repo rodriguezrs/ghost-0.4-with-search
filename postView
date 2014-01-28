@@ -1,0 +1,23 @@
+CREATE VIEW posts AS
+SELECT
+	posts_fts.rowid,
+	CAST(posts_fts.rowid as Integer) as id,
+	posts_fts.uuid,
+	posts_fts.title,
+	posts_fts.slug,
+	posts_fts.markdown,
+	posts_fts.html,
+	posts_fts.featured,
+	posts_fts.page,
+	posts_fts.status,
+	posts_fts.language,
+	posts_fts.meta_title,
+	posts_fts.meta_description,
+	posts_fts.author_id,
+	posts_fts.created_at,
+	posts_fts.created_by,
+	posts_fts.updated_at,
+	posts_fts.updated_by,
+	posts_fts.published_at,
+	posts_fts.published_by
+FROM posts_fts

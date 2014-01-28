@@ -1,0 +1,74 @@
+CREATE TRIGGER posts_UPDATE INSTEAD OF UPDATE ON posts
+BEGIN
+UPDATE posts_fts
+SET
+	uuid = NEW.uuid,
+	title = NEW.title,
+	slug = NEW.slug,
+	markdown = NEW.markdown,
+	html = NEW.html,
+	featured = NEW.featured,
+	page = NEW.page,
+	status = NEW.status,
+	meta_title = NEW.meta_title,
+	meta_description = NEW.meta_description,
+	author_id = NEW.author_id,
+	created_at = NEW.created_at,
+	created_by = NEW.created_by,
+	updated_at = NEW.updated_at,
+	updated_by = NEW.updated_by,
+	published_at = NEW.published_at,
+	published_by = NEW.published_by
+WHERE
+	rowid = OLD.id;
+END;
+
+
+CREATE TRIGGER posts_INSERT INSTEAD OF INSERT ON posts
+BEGIN
+INSERT INTO posts_fts (
+	uuid,
+	title,
+	slug,
+	markdown,
+	html,
+	featured,
+	page,
+	status,
+	language,
+	meta_title,
+	meta_description,
+	author_id,
+	created_at,
+	created_by,
+	updated_at,
+	updated_by,
+	published_at,
+	published_by
+)
+VALUES (
+	NEW.uuid,
+	NEW.title,
+	NEW.slug,
+	NEW.markdown,
+	NEW.html,
+	NEW.featured,
+	NEW.page,
+	NEW.status,
+	NEW.language,
+	NEW.meta_title,
+	NEW.meta_description,
+	NEW.author_id,
+	NEW.created_at,
+	NEW.created_by,
+	NEW.updated_at,
+	NEW.updated_by,
+	NEW.published_at,
+	NEW.published_by
+);
+END;
+
+CREATE TRIGGER posts_DELETE INSTEAD OF DELETE ON posts
+BEGIN
+	DELETE FROM posts_fts WHERE rowid = OLD.id;
+END;
